@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Pterodactyl\Models\User;
 use Illuminate\Http\JsonResponse;
 use Pterodactyl\Facades\Activity;
+use Pterodactyl\Exceptions\DisplayException;
 use Illuminate\Contracts\View\View;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
@@ -51,6 +52,11 @@ class LoginController extends AbstractLoginController
         // can proceed to the next step in the login process.
         if (!password_verify($request->input('password'), $user->password)) {
             $this->sendFailedLoginResponse($request, $user);
+        }
+
+        // Prevent unverified users from logging in.
+        if ($user->email_verified_at === null) {
+            throw new DisplayException('Please verify your email address before logging in.');
         }
 
         if (!$user->use_totp) {

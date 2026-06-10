@@ -46,17 +46,20 @@ class LoginController extends AbstractLoginController
             $this->sendFailedLoginResponse($request);
         }
 
+        // Prevent unverified users from logging in. This check must come before the
+        // password verification because newly registered accounts have a null password,
+        // and password_verify against null would fail with a generic "bad credentials"
+        // message instead of the more helpful verification prompt.
+        if ($user->email_verified_at === null) {
+            throw new DisplayException('Please verify your email address before logging in.');
+        }
+
         // Ensure that the account is using a valid username and password before trying to
         // continue. Previously this was handled in the 2FA checkpoint, however that has
         // a flaw in which you can discover if an account exists simply by seeing if you
         // can proceed to the next step in the login process.
         if (!password_verify($request->input('password'), $user->password)) {
             $this->sendFailedLoginResponse($request, $user);
-        }
-
-        // Prevent unverified users from logging in.
-        if ($user->email_verified_at === null) {
-            throw new DisplayException('Please verify your email address before logging in.');
         }
 
         if (!$user->use_totp) {

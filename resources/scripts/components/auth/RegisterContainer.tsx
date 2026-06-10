@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { useEffect, useRef, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import register from '@/api/auth/register';
 import { httpErrorToHuman } from '@/api/http';
 import LoginFormContainer from '@/components/auth/LoginFormContainer';
@@ -26,10 +26,16 @@ export default () => {
 
     const { clearFlashes, addFlash } = useFlash();
     const { enabled: recaptchaEnabled, siteKey } = useStoreState((state) => state.settings.data!.recaptcha);
+    const { enabled: registrationEnabled } = useStoreState((state) => state.settings.data!.registration);
 
     useEffect(() => {
         clearFlashes();
     }, []);
+
+    // Redirect to login if registration is disabled.
+    if (!registrationEnabled) {
+        return <Redirect to={'/auth/login'} />;
+    }
 
     const handleSubmission = (
         values: Values,

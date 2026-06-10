@@ -53,10 +53,15 @@ class RegisterController extends Controller
             ]);
         }
 
-        // Validate username uniqueness separately (unverified accounts still claim their username).
-        $request->validate([
-            'username' => 'unique:users,username',
-        ]);
+        // Check username uniqueness manually to avoid leaking existence via a 422 error.
+        // Return the same generic success response to prevent username enumeration.
+        if (User::query()->where('username', $request->input('username'))->exists()) {
+            return new JsonResponse([
+                'data' => [
+                    'complete' => true,
+                ],
+            ]);
+        }
 
         $user = User::create([
             'email' => $request->input('email'),

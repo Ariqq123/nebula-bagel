@@ -36,7 +36,7 @@ class WelcomeSetPasswordNotification extends Notification implements ShouldQueue
             ->subject('Welcome - Set Your Password')
             ->greeting('Hello ' . $this->user->name . '!')
             ->line('An account has been created for you on ' . config('app.name') . '.')
-            ->action('Set Your Password', url('/auth/password/reset/' . $this->token . '?email=' . urlencode($this->user->email)))
+            ->action('Set Your Password', url('/auth/password/reset/' . $this->token . '?email=' . urlencode($this->user->email) . '&new=1'))
             ->line('If you did not create this account, no further action is required.');
     }
 }

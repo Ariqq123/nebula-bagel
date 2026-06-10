@@ -1,0 +1,1 @@
+../../../../../.blueprint/extensions/subdomain/views/admin/view.blade.php

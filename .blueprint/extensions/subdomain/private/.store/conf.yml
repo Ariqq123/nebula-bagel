@@ -1,0 +1,18 @@
+info:
+  name: 'Subdomain'
+  identifier: 'subdomain'
+  description: 'Manage Cloudflare subdomains for servers'
+  flags: ''
+  version: '1.0.0'
+  target: 'beta-2026-01'
+  author: 'Admin'
+  icon: 'subdomain.png'
+  website: ''
+
+admin:
+  view: 'admin/view.blade.php'
+  controller: 'admin/controller.php'
+
+data:
+  directory: 'private'
+  public: 'public'

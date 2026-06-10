@@ -52,6 +52,16 @@
                                 </div>
                             </div>
                             <div class="form-group col-md-4">
+                                <label class="control-label">Allow Registration</label>
+                                <div>
+                                    <select class="form-control" name="pterodactyl:auth:registration_enabled">
+                                        <option value="true" @if(old('pterodactyl:auth:registration_enabled', config('pterodactyl.auth.registration_enabled')) == 'true') selected @endif>Enabled</option>
+                                        <option value="false" @if(old('pterodactyl:auth:registration_enabled', config('pterodactyl.auth.registration_enabled')) != 'true') selected @endif>Disabled</option>
+                                    </select>
+                                    <p class="text-muted"><small>When enabled, users can create accounts from the login page. New accounts must verify their email before logging in.</small></p>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-4">
                                 <label class="control-label">Default Language</label>
                                 <div>
                                     <select name="app:locale" class="form-control">

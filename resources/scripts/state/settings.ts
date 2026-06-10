@@ -7,6 +7,9 @@ export interface SiteSettings {
         enabled: boolean;
         siteKey: string;
     };
+    registration: {
+        enabled: boolean;
+    };
     blueprint: {
         disable_attribution: boolean;
     };

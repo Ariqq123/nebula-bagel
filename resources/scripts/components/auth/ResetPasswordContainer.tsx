@@ -28,6 +28,10 @@ export default ({ match, location }: RouteComponentProps<{ token: string }>) => 
         setEmail(parsed.get('email') || '');
     }
 
+    const isNewAccount = parsed.get('new') === '1';
+    const title = isNewAccount ? 'Set Your Password' : 'Reset Password';
+    const buttonText = isNewAccount ? 'Set Password' : 'Reset Password';
+
     const submit = ({ password, passwordConfirmation }: Values, { setSubmitting }: FormikHelpers<Values>) => {
         clearFlashes();
         performPasswordReset(email, { token: match.params.token, password, passwordConfirmation })
@@ -61,7 +65,7 @@ export default ({ match, location }: RouteComponentProps<{ token: string }>) => 
             })}
         >
             {({ isSubmitting }) => (
-                <LoginFormContainer title={'Reset Password'} css={tw`w-full flex`}>
+                <LoginFormContainer title={title} css={tw`w-full flex`}>
                     <div>
                         <label>Email</label>
                         <Input value={email} isLight disabled />
@@ -80,7 +84,7 @@ export default ({ match, location }: RouteComponentProps<{ token: string }>) => 
                     </div>
                     <div css={tw`mt-6`}>
                         <Button size={'xlarge'} type={'submit'} disabled={isSubmitting} isLoading={isSubmitting}>
-                            Reset Password
+                            {buttonText}
                         </Button>
                     </div>
                     <div css={tw`mt-6 text-center`}>

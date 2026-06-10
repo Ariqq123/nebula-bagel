@@ -125,6 +125,7 @@ class User extends Model implements
         'external_id',
         'username',
         'email',
+        'email_verified_at',
         'name_first',
         'name_last',
         'password',
@@ -144,6 +145,7 @@ class User extends Model implements
         'use_totp' => 'boolean',
         'gravatar' => 'boolean',
         'totp_authenticated_at' => 'datetime',
+        'email_verified_at' => 'datetime',
     ];
 
     /**

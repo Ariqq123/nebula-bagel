@@ -37,6 +37,7 @@ return [
 
     'auth' => [
         '2fa_required' => env('APP_2FA_REQUIRED', 0),
+        'registration_enabled' => env('PTERODACTYL_REGISTRATION_ENABLED', false),
         '2fa' => [
             'bytes' => 32,
             'window' => env('APP_2FA_WINDOW', 4),

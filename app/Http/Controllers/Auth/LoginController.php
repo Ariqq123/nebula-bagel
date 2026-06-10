@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Pterodactyl\Models\User;
 use Illuminate\Http\JsonResponse;
 use Pterodactyl\Facades\Activity;
+use Pterodactyl\Exceptions\DisplayException;
 use Illuminate\Contracts\View\View;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
@@ -43,6 +44,14 @@ class LoginController extends AbstractLoginController
             $user = User::query()->where($this->getField($username), $username)->firstOrFail();
         } catch (ModelNotFoundException) {
             $this->sendFailedLoginResponse($request);
+        }
+
+        // Prevent unverified users from logging in. This check must come before the
+        // password verification because newly registered accounts have a null password,
+        // and password_verify against null would fail with a generic "bad credentials"
+        // message instead of the more helpful verification prompt.
+        if ($user->email_verified_at === null) {
+            throw new DisplayException('Please verify your email address before logging in.');
         }
 
         // Ensure that the account is using a valid username and password before trying to

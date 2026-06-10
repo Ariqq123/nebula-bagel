@@ -108,6 +108,11 @@ class RouteServiceProvider extends ServiceProvider
             )->by($key);
         });
 
+        // Registration rate limiting: 3 attempts per 10 minutes per IP.
+        RateLimiter::for('registration', function (Request $request) {
+            return Limit::perMinutes(10, 3)->by($request->ip());
+        });
+
         ResourceLimit::boot();
     }
 }

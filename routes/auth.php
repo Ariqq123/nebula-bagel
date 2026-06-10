@@ -17,6 +17,7 @@ use Pterodactyl\Http\Controllers\Auth;
 Route::get('/login', [Auth\LoginController::class, 'index'])->name('auth.login');
 Route::get('/password', [Auth\LoginController::class, 'index'])->name('auth.forgot-password');
 Route::get('/password/reset/{token}', [Auth\LoginController::class, 'index'])->name('auth.reset');
+Route::get('/register', [Auth\LoginController::class, 'index'])->name('auth.register');
 
 // Apply a throttle to authentication action endpoints, in addition to the
 // recaptcha endpoints to slow down manual attack spammers even more. 🤷‍
@@ -33,6 +34,10 @@ Route::middleware(['throttle:authentication'])->group(function () {
         ->name('auth.post.forgot-password')
         ->middleware('recaptcha');
 });
+
+// Registration endpoint with its own rate limiter.
+Route::post('/register', [Auth\RegisterController::class, 'register'])
+    ->middleware(['throttle:registration', 'recaptcha']);
 
 // Password reset routes. This endpoint is hit after going through
 // the forgot password routes to acquire a token (or after an account

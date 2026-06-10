@@ -76,10 +76,17 @@ class ResetPasswordController extends Controller
      */
     protected function resetPassword($user, $password)
     {
-        $user = $this->userRepository->update($user->id, [
+        $updateData = [
             'password' => $this->hasher->make($password),
             $user->getRememberTokenName() => Str::random(60),
-        ]);
+        ];
+
+        // If the user has not verified their email, mark it as verified now.
+        if ($user->email_verified_at === null) {
+            $updateData['email_verified_at'] = now();
+        }
+
+        $user = $this->userRepository->update($user->id, $updateData);
 
         $this->dispatcher->dispatch(new PasswordReset($user));
         PasswordChanged::dispatch($user);

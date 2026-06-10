@@ -1,0 +1,1 @@
+function insertAboveApp(e){var r=document.querySelector(e),n=document.querySelector(".App___StyledDiv-sc-2l91w7-0");if(!r||!n)throw new Error("Elements could not be found.");var o=r.previousElementSibling;n.parentNode.insertBefore(r,n),o?o.parentNode.insertBefore(n,o.nextSibling):r.parentNode.insertBefore(n,r.parentNode.firstChild)}console.log("nebula#~ insertAboveApp.js");

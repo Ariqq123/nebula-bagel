@@ -1,0 +1,123 @@
+@import url("./css/navigation.css");
+@import url("./css/editor.css");
+@import url("./css/preview.css");
+@import url("./css/notify.css");
+
+@import url("https://cdn.nebula.style/icons/bootstrap/bootstrap-icons.css");
+@import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
+
+body { font-family: 'Inter', sans-serif; }
+html { background-color: #050404; height: 100%; width: 100%; }
+
+.navigation, .editor, .preview {
+  --editor-navigationWidth: 60px;
+  --editor-editorWidth: 40%;
+  --editor-previewWidth: 60%;
+
+  color: rgb(207, 207, 207);
+  position: fixed;
+  top: 0;
+  margin: 20px;
+  height: calc(100% - 40px);
+  overflow-y: scroll;
+  overflow-x: hidden;
+  border-radius: 12px;
+  transition:
+    width .7s;
+}
+.navigation {
+  left: 0;
+  width: calc(var(--editor-navigationWidth));
+}
+.editor {
+  left: calc(var(--editor-navigationWidth) + 20px);
+  width: calc(var(--editor-editorWidth) - var(--editor-navigationWidth) - 50px);
+  background-color: #141414;
+}
+.preview { 
+  right: 0;
+  width: calc(var(--editor-previewWidth) - 30px);
+  overflow: hidden;
+  background-color: #141414;
+}
+
+@media
+screen and (orientation: portrait),
+screen and (max-width: 1000px) {
+  .editor, .preview {
+    width: calc(100% - var(--editor-navigationWidth) - 60px);
+    left: calc(var(--editor-navigationWidth) + 20px);
+    right: unset;
+    top: unset;
+    bottom: unset;
+  }
+
+  .editor {
+    top: 0;
+    height: calc(50% - 30px);
+  }
+
+  .preview {
+    height: calc(50% - 30px);
+    bottom: 0;
+  }
+}
+
+@media
+screen and (orientation: portrait) and (max-height: 950px),
+screen and (max-width: 1000px) and (max-height: 950px) {
+  .editor, .preview {
+    width: calc(100% - var(--editor-navigationWidth) - 60px);
+    left: calc(var(--editor-navigationWidth) + 20px);
+    right: unset;
+    top: unset;
+    bottom: unset;
+  }
+
+  .editor {
+    top: 0;
+    height: calc(100% - 40px);
+  }
+
+  .preview {
+    height: 0;
+    bottom: 0;
+    display: none;
+  }
+}
+
+.hidden { display:none }
+
+/* Scrollbars */
+/* Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+  display: none;
+}
+
+
+/* Animations */
+@keyframes designer-fade {
+  0% {opacity: 0}
+  100% {opacity: 1}
+}
+@keyframes designer-fade-exit {
+  0% {opacity: 1}
+  100% {opacity: 0}
+}
+
+.fade {
+  animation-name: designer-fade;
+  animation-duration: 300ms;
+  animation-timing-function: ease-in;
+  animation-fill-mode: both;
+  animation-direction: normal;
+  opacity: 0;
+}
+.fade.fade-exit {
+  animation-name: designer-fade-exit;
+  animation-duration: 300ms;
+  animation-timing-function: ease-in;
+  animation-fill-mode: both;
+  animation-direction: normal;
+  opacity: 1;
+}

@@ -1,0 +1,43 @@
+/vendor
+*.DS_Store*
+.env*
+!.env.ci
+!.env.example
+.vagrant/*
+.vscode/*
+storage/framework/*
+/.idea
+/nbproject
+/.direnv
+.blueprint/extensions/blueprint/private/db/*
+.blueprint/extensions/blueprint/private/debug/*
+storage/extensions/*
+!storage/extensions/.gitkeep
+
+node_modules
+*.log
+_ide_helper.php
+_ide_helper_models.php
+.phpstorm.meta.php
+.yarn
+public/assets/manifest.json
+
+# For local development with docker
+# Remove if we ever put the Dockerfile in the repo
+.dockerignore
+docker-compose.*
+!docker-compose.example.yml
+!docker-compose.example.yaml
+
+# for image related files
+misc
+.php-cs-fixer.cache
+coverage.xml
+resources/lang/locales.js
+.phpunit.result.cache
+.build-cache.json
+
+/public/build
+/public/hot
+/public/storage
+result

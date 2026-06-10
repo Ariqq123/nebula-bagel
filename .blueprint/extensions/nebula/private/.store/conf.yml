@@ -1,0 +1,25 @@
+info:
+  name: 'Nebula'
+  identifier: 'nebula'
+  description: 'Pterodactyl takes flight'
+  flags: 'developerKeepApplicationCache, developerEscalateExportScript, developerEscalateInstallScript'
+  version: '2.2-2'
+  target: 'beta-2026-01'
+  author: 'prplwtf'
+  icon: 'nebula.jpg'
+  website: 'https://nebula.style'
+
+admin:
+  view: 'admin/view.blade.php'
+  controller: 'admin/controller.php'
+  wrapper: 'admin/layout.blade.php'
+
+dashboard:
+  wrapper: 'client/wrapper.blade.php'
+
+data:
+  directory: 'private'
+  public: 'public'
+
+requests:
+  views: 'src/views'

@@ -1,0 +1,9 @@
+.navigation, .editor, .preview {
+  --editor-navigationWidth: 60px !important;
+  --editor-editorWidth: calc(100% - 10px) !important;
+  --editor-previewWidth: 0% !important;
+}
+@media (orientation: portrait), (max-width: 1000px) {
+  .editor { height: calc(100% - 40px) !important }
+  .preview { height: 0 !important }
+}

@@ -1,0 +1,1 @@
+/* NebulaStart */ 'blueprint:nebula' => [ 'driver' => 'local', 'root' => storage_path('extensions/nebula'), 'url' => env('APP_URL') . '/fs/extensions/nebula', 'visibility' => 'public', 'throw' => false, ], 'blueprint_private:nebula' => [ 'driver' => 'local', 'root' => storage_path('.extensions/nebula'), 'throw' => false, ], /* NebulaEnd */

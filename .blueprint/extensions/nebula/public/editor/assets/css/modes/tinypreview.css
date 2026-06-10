@@ -1,0 +1,19 @@
+.navigation, .editor, .preview {
+  --editor-navigationWidth: 60px !important;
+  --editor-editorWidth: 55% !important;
+  --editor-previewWidth: 45% !important;
+}
+
+@media
+screen and (orientation: portrait),
+screen and (max-width: 1000px) {
+  .editor { height: calc(75% - 30px) !important }
+  .preview { height: calc(25% - 30px) !important }
+}
+
+@media
+screen and (orientation: portrait) and (max-height: 950px),
+screen and (max-width: 1000px) and (max-height: 950px) {
+  .editor { height: calc(75% - 30px) !important }
+  .preview { height: calc(25% - 30px) !important; display: block !important; }
+}

@@ -1,0 +1,97 @@
+.navigation {
+  --editor-navigationActiveColor: rgb(37, 37, 37);
+  --editor-navigationHoverColor:rgb(26, 25, 25);
+}
+
+.navigation::-webkit-scrollbar { display: none }
+.navigation { -ms-overflow-style: none; scrollbar-width: none; }
+
+.navigation-button {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  border-radius: inherit;
+  border: none;
+  background-color: #050404;
+  color: rgb(131, 131, 131);
+  font-size: 30px;
+  text-align: center;
+  margin-bottom: 10px;
+  position: relative;
+  transition:
+  background-color .4s;
+}
+.navigation-button i { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%) }
+.navigation-button.active {
+  color: rgb(187, 187, 187);
+  background-color: var(--editor-navigationActiveColor);
+}
+.navigation-button:hover {
+  background-color: var(--editor-navigationHoverColor);
+}
+
+.return-button {
+  z-index: 2;
+  aspect-ratio: unset;
+  border: none;
+  border-top-right-radius: 12px;
+  border-bottom-right-radius: 12px;
+  color: rgb(255, 131, 131);
+  font-size: 22px;
+  background-color: #2b1010;
+  position: fixed;
+  left: 0;
+  width: 80px;
+  height: 60px;
+  top: 20px;
+  padding-left: 20px;
+  text-align: center;
+  transition:
+    width .5s,
+    padding-left .5s,
+    background-color .5s,
+    color .5s;
+}
+.return-button i { padding-left: 20px; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); transition: padding .5s; }
+.return-button:hover i { padding-left: 30px; }
+.return-button:hover {
+  width: 90px;
+  padding-left: 30px;
+  background-color: #351414;
+  color: rgb(255, 160, 160);
+}
+
+.save-button {
+  z-index: 2;
+  aspect-ratio: unset;
+  border: none;
+  border-radius: 12px;
+  color: rgb(131, 160, 255);
+  font-size: 24px;
+  background-color: #080e27;
+  position: fixed;
+  left: 20px;
+  width: 60px;
+  height: 60px;
+  --bottom: 20px;
+  bottom: -61px;
+  text-align: center;
+  transition:
+    bottom .8s,
+    height .5s,
+    padding-bottom .5s,
+    background-color .5s,
+    color .5s;
+}
+.save-button i { padding-bottom: 0px; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); transition: padding .5s; }
+.save-button:hover i { padding-bottom: 20px; }
+.save-button:hover {
+  background-color: #0e1636;
+  color: rgb(153, 177, 255);
+  padding-bottom: 20px;
+  height: 80px;
+}
+.save-padding {
+  --height: 80px;
+  height: 0px;
+  transition: height .8s;
+}

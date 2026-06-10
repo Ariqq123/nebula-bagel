@@ -1,0 +1,1 @@
+function isElementNotFullyVisible(t){var e=t.getBoundingClientRect(),n=window.innerHeight||document.documentElement.clientHeight,i=window.innerWidth||document.documentElement.clientWidth;return e.top<0||e.left<0||e.bottom>n||e.right>i}console.log("nebula#~ viewportVisibility.js");

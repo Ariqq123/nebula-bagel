@@ -1,0 +1,100 @@
+.notif-container {
+  --verticalOffset: 30px;
+  position: fixed;
+  left: 50%;
+  top: calc(50% + var(--verticalOffset));
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  max-width: calc(100% - 100px);
+  width: 400px;
+  z-index: 51;
+  color: rgb(207, 207, 207);
+  background-color: #141414;
+  border-radius: 12px;
+  padding: 25px;
+  opacity: 0;
+  transition: 
+    top .4s, /* .6s */
+    opacity .4s; /* .6s */
+}
+.notif {
+  opacity: 0;
+  --navOpacity: 1;
+  transition: opacity .5s; /* .7s */
+  position: fixed;
+  z-index: 49;
+  background-color: #050404;
+  width: calc(100% - 100px);
+  height: 100%;
+  left: 100px;
+  top: 0;
+  display: none;
+}
+.notif::before {
+  background-color: #05040490;
+  left: 0px;
+  top: 0;
+  height: 100%;
+  width: 100px;
+  position: fixed;
+  transition: opacity .5s; /* .7s */
+  opacity: var(--navOpacity);
+  z-index: 48;
+  content: ' ';
+}
+.notif-hitbox {
+  opacity: 0;
+  position: fixed;
+  z-index: 50;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+}
+
+.notif-title {
+  margin-top: 0px;
+  font-weight: 500;
+}
+.notif-text {
+  padding-bottom: 8px;
+}
+.notif-button, .option-button {
+  --bg: #222222;
+  --hoverbg: #363636;
+  --color: #c5c5c5;
+  --hovercolor: #c5c5c5;
+  background-color: var(--bg);
+  color: var(--color);
+  border: none;
+  border-radius: 10px;
+  padding: 10px;
+  transition:
+    background-color .3s,
+    color .3s,
+    opacity .4s;
+  margin-right: 5px;
+  min-width: 100px;
+  height: 37px;
+  opacity: 1;
+}
+.notif-button.height-auto, .option-button.height-auto { height: auto !important; }
+.notif-button.width-auto, .option-button.width-auto { min-width: unset !important; max-width: unset !important; width: auto !important; }
+.notif-button.force-square, .option-button.force-square { aspect-ratio: 1 / 1; }
+.notif-button:hover, .option-button:hover { background-color: var(--hoverbg); color: var(--hovercolor) }
+.notif-button i.bi, .option-button i.bi { padding: 10px; }
+.notif-button.notif-primary, .option-button.button-primary {
+  --bg: #212844;
+  --hoverbg: #29304d;
+  --color: rgb(131, 160, 255);
+  --hovercolor: rgb(153, 177, 255);
+}
+.notif-button.notif-danger, .option-button.button-danger {
+  --bg: #442121;
+  --hoverbg: #4d2929;
+  --color: rgb(255, 131, 131);
+  --hovercolor: rgb(255, 153, 153);
+}
+.notif-button.align-right, .option-button.align-right {
+  float: right;
+}

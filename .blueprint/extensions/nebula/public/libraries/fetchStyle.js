@@ -1,0 +1,1 @@
+console.log("nebula#~ fetchStyle.js");let fetchStyle=function(o,l){return new Promise((e,t)=>{var r=document.createElement("link"),n=(r.type="text/css",r.rel="stylesheet",r.onload=()=>e(),r.onerror=()=>t(),r.href=o,l&&(r.id=l),document.querySelector("script"));n.parentNode.insertBefore(r,n)})},removeStyle=function(e){return new Promise(()=>{document.getElementById(e).remove()})};

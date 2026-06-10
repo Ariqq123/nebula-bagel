@@ -84,7 +84,7 @@ Add user self-registration to the Pterodactyl Panel. Registration is admin-toggl
 
 - Add "Don't have an account? Register" link
 - Conditionally shown when registration is enabled
-- Enabled/disabled state from server-rendered config (same pattern reCAPTCHA uses)
+- Enabled/disabled state from `SiteConfiguration` DTO (same pattern reCAPTCHA uses)
 
 ### Styling
 
@@ -124,6 +124,11 @@ ALTER TABLE users ADD COLUMN email_verified_at TIMESTAMP NULL DEFAULT NULL;
 - Subject: "Welcome — Set Your Password"
 - Body: brief welcome message + button/link to set password and activate account
 
+### Password Reset Page Copy
+
+- When a user lands on `/auth/password/reset/{token}` and their `email_verified_at` is null, the page heading and button should read "Set Your Password" instead of "Reset Your Password"
+- Determined via a flag in the server-rendered config or by checking user state on token validation
+
 ## Security
 
 | Concern | Mitigation |
@@ -139,8 +144,9 @@ ALTER TABLE users ADD COLUMN email_verified_at TIMESTAMP NULL DEFAULT NULL;
 
 | Case | Behavior |
 |------|----------|
-| Duplicate email/username | Validation error returned |
-| User registers but never verifies | Account sits inactive; admin can delete manually |
+| Duplicate email/username (verified account exists) | Validation error returned |
+| Duplicate username (unverified account exists) | Validation error returned (unverified accounts claim their username) |
+| User registers but never verifies | Account sits inactive; admin can delete manually. No automatic purge (prevents username/email recycling attacks). |
 | Forgot password on unverified account | Works normally; completing it also verifies the account |
 | Registration disabled mid-form | POST returns 403; user sees error |
 | Token expires before use | User re-submits the registration form; backend detects the existing unverified account, regenerates the token, and resends the email |
